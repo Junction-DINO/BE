@@ -1,8 +1,7 @@
-package dino.junction.common.logger.aop;
+package dino.junction.common.aop;
 
 
-import dino.junction.common.logger.model.TraceId;
-import dino.junction.common.logger.model.TraceStatus;
+import dino.junction.common.aop.model.TraceStatus;
 
 public interface LogTrace {
     TraceStatus begin(String message);

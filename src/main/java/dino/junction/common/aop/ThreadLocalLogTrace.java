@@ -1,13 +1,11 @@
-package dino.junction.common.logger.aop;
+package dino.junction.common.aop;
 
 
-import dino.junction.common.logger.model.TraceId;
-import dino.junction.common.logger.model.TraceStatus;
+import dino.junction.common.aop.model.TraceId;
+import dino.junction.common.aop.model.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

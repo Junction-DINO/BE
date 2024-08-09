@@ -1,15 +1,12 @@
-package dino.junction.common.model;
+package dino.junction.common.error;
 
-import com.google.api.gax.rpc.StatusCode;
+import dino.junction.common.error.ErrorCode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.sql.Time;
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString

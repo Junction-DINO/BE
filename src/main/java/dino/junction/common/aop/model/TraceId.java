@@ -1,4 +1,4 @@
-package dino.junction.common.logger.model;
+package dino.junction.common.aop.model;
 
 import lombok.Getter;
 

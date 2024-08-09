@@ -1,17 +1,13 @@
-package dino.junction.common.logger.aop;
+package dino.junction.common.aop;
 
-import com.google.api.client.http.HttpStatusCodes;
-import dino.junction.common.logger.model.TraceStatus;
-import dino.junction.common.model.CustomException;
+import dino.junction.common.aop.model.TraceStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @Slf4j
 @Aspect

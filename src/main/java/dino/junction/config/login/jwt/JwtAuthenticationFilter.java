@@ -2,8 +2,8 @@ package dino.junction.config.login.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.http.HttpStatusCodes;
-import dino.junction.common.model.CustomException;
-import dino.junction.common.model.ErrorCode;
+import dino.junction.common.error.CustomException;
+import dino.junction.common.error.ErrorCode;
 import dino.junction.common.model.ErrorResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

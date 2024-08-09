@@ -3,8 +3,8 @@ spring:
     name: Junction-Dino
 
   datasource:
-    driver-class-name: org.hibernate.dialect.PostgreSQLDialect
-    url: jdbc:postgresql://db:5432/main
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/Junction-Dino
     username: postgres
     password: 1234
 
@@ -45,6 +45,16 @@ server:
     include-message: always       # Response 에 Exception Message 를 표시할지 (never | always | on_param)
     include-stacktrace: never     # Response 에 Stack Trace 를 표시할지 (never | always | on_param)
     whitelabel.enabled: true      # 에러 발생 시 Spring 기본 에러 페이지 노출 여부
+
+cloud:
+  aws:
+    bucket: junction-2024-dino
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
+      auto: false
 
 jwt:
   secret: HELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHING

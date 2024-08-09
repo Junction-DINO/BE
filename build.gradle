@@ -32,6 +32,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
+	// s3
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'javax.xml.bind:jaxb-api:2.3.0'
+
+
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

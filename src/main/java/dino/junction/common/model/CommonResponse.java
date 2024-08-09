@@ -1,15 +1,8 @@
 package dino.junction.common.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import dino.junction.common.logger.aop.LogTrace;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-
-import java.util.List;
 
 @Builder
 @Schema(description = "Success Response")
@@ -31,7 +24,7 @@ public record CommonResponse<T>(
         return CommonResponse.builder().status(200).code("SUCCESS").message("OK").data("SUCCESS").build();
     }
 
-    public static ResponseEntity<Object> ResponseEntitySuccess(Object data) {
+    public static ResponseEntity<Object> of(Object data) {
         return ResponseEntity.status(200).body(CommonResponseSuccess(data));
     }
 }

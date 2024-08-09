@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
         info =@Info(
-                title = "Duett API 명세서",
+                title = "Junction API",
                 version = "1.0.0",
-                description = "Duett API 명세서입니다."
+                description = "Junction API"
         )
         ,security = { @SecurityRequirement(name = "Authorization") }
 )

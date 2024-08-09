@@ -1,2 +1,0 @@
-# BE
-Junction hackathon backend

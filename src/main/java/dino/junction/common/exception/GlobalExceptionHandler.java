@@ -2,9 +2,9 @@ package dino.junction.common.exception;
 
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.gax.rpc.UnauthenticatedException;
-import dino.junction.common.logger.aop.LogTrace;
-import dino.junction.common.model.CustomException;
-import dino.junction.common.model.ErrorCode;
+import dino.junction.common.aop.LogTrace;
+import dino.junction.common.error.CustomException;
+import dino.junction.common.error.ErrorCode;
 import dino.junction.common.model.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @RequiredArgsConstructor

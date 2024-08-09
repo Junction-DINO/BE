@@ -1,5 +1,7 @@
 package dino.junction.common.model;
 
+import dino.junction.common.error.CustomException;
+import dino.junction.common.error.ErrorCode;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 

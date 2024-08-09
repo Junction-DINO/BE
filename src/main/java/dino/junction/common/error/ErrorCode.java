@@ -1,4 +1,4 @@
-package dino.junction.common.model;
+package dino.junction.common.error;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
