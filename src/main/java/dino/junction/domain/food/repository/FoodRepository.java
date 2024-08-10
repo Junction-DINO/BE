@@ -1,10 +1,12 @@
 package dino.junction.domain.food.repository;
 
-import dino.junction.domain.food.model.entity.FoodEntity;
+import dino.junction.domain.food.entity.FoodEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface FoodRepository extends JpaRepository<FoodEntity, Long> {
-    List<FoodEntity> findByFoodNameContaining(String foodName);
+    Page<FoodEntity> findByFoodNameContaining(String foodName, Pageable pageable);
+
+    long countByFoodNameContaining(String keyword);
 }

@@ -1,42 +1,109 @@
 package dino.junction.domain.food.service;
 
-import aj.org.objectweb.asm.TypeReference;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import dino.junction.domain.food.model.entity.FoodEntity;
-import dino.junction.domain.food.controller.request.TemplateCreateRequest;
+import dino.junction.domain.food.dto.FoodResponse;
+import dino.junction.domain.food.entity.FoodEntity;
 import dino.junction.domain.food.repository.FoodRepository;
+import dino.junction.domain.image.service.ImageService;
+import dino.junction.domain.ocr.service.OcrService;
+import dino.junction.domain.ocr.dto.OcrRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.BadRequestException;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class FoodService {
     private final FoodRepository foodRepository;
+    private final ImageService imageService;
+    private final OcrService ocrService;
+
     @Transactional
     public void saveFoods(List<FoodEntity> foods) {
         foodRepository.saveAll(foods);
     }
 
-    public List<FoodEntity> searchFoods(String query) {
-        return foodRepository.findByFoodNameContaining(query);
+    public List<FoodEntity> searchFoods(String q, Pageable pageable) {
+        return foodRepository.findByFoodNameContaining(q, pageable).stream().toList();
+    }
+
+
+    @Transactional
+    public List<FoodResponse> searchFoodsByNames(OcrRequest ocrRequest, Pageable pageable) {
+        try {
+            String imageUrl = imageService.saveImage(ocrRequest.getOcrImage());
+            List<String> names = ocrService.extractTextFromImageUrl(imageUrl);
+            imageService.deleteImage(imageUrl);
+
+            long max = 0;
+            String maxName = null;
+            for(String name : names){
+                long count = foodRepository.countByFoodNameContaining(name);
+                if(max < count){
+                    max = count;
+                    maxName = name;
+                }
+            }
+            if (maxName == null) {
+                return List.of();
+            }
+            String keyword = maxName;
+
+            return foodRepository.findByFoodNameContaining(maxName, pageable)
+                    .stream()
+                    .map(food -> FoodResponse.builder()
+                            .id(food.getId())
+                            .foodCode(food.getFoodCode())
+                            .foodName(food.getFoodName())
+                            .nutritionStandardAmount(food.getNutritionStandardAmount())
+                            .energyKcal(food.getEnergyKcal())
+                            .waterG(food.getWaterG())
+                            .proteinG(food.getProteinG())
+                            .fatG(food.getFatG())
+                            .ashG(food.getAshG())
+                            .carbohydrateG(food.getCarbohydrateG())
+                            .sugarG(food.getSugarG())
+                            .dietaryFiberG(food.getDietaryFiberG())
+                            .calciumMg(food.getCalciumMg())
+                            .ironMg(food.getIronMg())
+                            .phosphorusMg(food.getPhosphorusMg())
+                            .potassiumMg(food.getPotassiumMg())
+                            .sodiumMg(food.getSodiumMg())
+                            .vitaminAμgRAE(food.getVitaminAμgRAE())
+                            .retinolμg(food.getRetinolμg())
+                            .betaCaroteneμg(food.getBetaCaroteneμg())
+                            .thiamineMg(food.getThiamineMg())
+                            .riboflavinMg(food.getRiboflavinMg())
+                            .niacinMg(food.getNiacinMg())
+                            .vitaminCMg(food.getVitaminCMg())
+                            .vitaminDμg(food.getVitaminDμg())
+                            .cholesterolMg(food.getCholesterolMg())
+                            .saturatedFattyAcidG(food.getSaturatedFattyAcidG())
+                            .transFattyAcidG(food.getTransFattyAcidG())
+                            .servingSizeReference(food.getServingSizeReference())
+                            .foodWeight(food.getFoodWeight())
+                            .manufacturerName(food.getManufacturerName())
+                            .providerName(food.getProviderName())
+                            .keyword(keyword)
+                            .build())
+                    .toList();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to extract text: " + e.getMessage());
+        }
     }
 
     @Transactional

@@ -58,6 +58,9 @@ public class SecurityConfig {
             // 회원가입
             "/api/v1/sign-up",
 
+            // OCR, Search
+            "/api/v1/search/**",
+
             // 에러 페이지
             "/error/**"
     };
