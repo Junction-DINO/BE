@@ -14,9 +14,8 @@ public class FoodLoader implements CommandLineRunner {
     private final FoodService foodService;
     @Override
     public void run(String... args) throws Exception {
-        String jsonFilePath = "src/main/resources/food.json";
         try {
-            foodService.saveFoodsFromJson(jsonFilePath);
+            foodService.saveFoodsFromJson();
             System.out.println("Food data loaded successfully.");
         } catch (IOException e) {
             e.printStackTrace();

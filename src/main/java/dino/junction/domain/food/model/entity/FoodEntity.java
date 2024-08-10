@@ -8,7 +8,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "foods")
+@Table(name = "food")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -105,9 +105,6 @@ public class FoodEntity {
     @Column(name = "food_weight")
     private String foodWeight;
 
-    @Column(name = "product_report_number")
-    private String productReportNumber;
-
     @Column(name = "manufacturer_name")
     private String manufacturerName;
 
@@ -151,7 +148,6 @@ public class FoodEntity {
         this.transFattyAcidG = transFattyAcidG;
         this.servingSizeReference = servingSizeReference;
         this.foodWeight = foodWeight;
-        this.productReportNumber = productReportNumber;
         this.manufacturerName = manufacturerName;
         this.providerName = providerName;
     }

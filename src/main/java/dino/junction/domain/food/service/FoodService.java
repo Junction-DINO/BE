@@ -40,10 +40,9 @@ public class FoodService {
     }
 
     @Transactional
-    public void saveFoodsFromJson(String jsonFilePath) throws IOException {
-        Reader reader = new FileReader("src/main/resources/food_loader.json");
-        //JsonArray dataArray = (JsonArray) JsonParser.parseReader(reader);
-        JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject(); // JSON 객체로 읽기
+    public void saveFoodsFromJson() throws IOException {
+        Reader reader = new FileReader("./src/main/resources/food_loader.json");
+        JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
 
         JsonArray recordsArray = jsonObject.getAsJsonArray("records");
         List<FoodEntity> foodEntities = new ArrayList<>();
