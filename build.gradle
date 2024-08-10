@@ -36,10 +36,7 @@ dependencies {
 	// s3
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	implementation 'javax.xml.bind:jaxb-api:2.3.0'
-<<<<<<< HEAD
 	implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'
-=======
->>>>>>> da44a07a9f369fa0b9692f854f707b574e6cb42b
 
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
 	compileOnly 'org.projectlombok:lombok'
