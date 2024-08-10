@@ -41,7 +41,7 @@ public class FoodService {
 
     @Transactional
     public void saveFoodsFromJson() throws IOException {
-        Reader reader = new FileReader("./src/main/resources/food_loader.json");
+        Reader reader = new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/food_loader.json")), "UTF-8");
         JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
 
         JsonArray recordsArray = jsonObject.getAsJsonArray("records");
