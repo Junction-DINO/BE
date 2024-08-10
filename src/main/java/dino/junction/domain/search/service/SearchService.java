@@ -23,7 +23,8 @@ public class SearchService {
         return foodService.searchFoodsByNames(ocrRequest, pageable);
     }
 
-    public List<FoodEntity> searchFoods(String q, Integer page, Integer size) {
+    @Transactional
+    public List<FoodResponse> searchFoods(String q, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return foodService.searchFoods(q, pageable);
     }
