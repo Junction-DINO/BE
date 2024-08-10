@@ -1,16 +1,13 @@
 spring:
   application:
     name: Junction-Dino
-
+  profiles:
+    include: oauth2
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/Junction-Dino
     username: postgres
     password: 1234
-
-  h2:
-    console:
-      enabled: true
 
   jpa:
     open-in-view: false
@@ -57,9 +54,8 @@ cloud:
       auto: false
 
 jwt:
-  secret: HELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHINGHELLONICETOSEEYOUWELCOMETOTHEMYMATCHING
-  access-token-time: 864000000  # 10일
-  refresh-token-time: 864000000  # 10일
+  secret-key: CwS0ejODKrwKcZFCkXAeScfgixh2dKKtZj4eN5FdJoDHAeXpd7ScsxDqCmTGJtOGhQ75T33L1thACccTgjXuvw==
+  access-token-valid-time-in-milliseconds: 86400000 #1 day
 
 logging:
   level:

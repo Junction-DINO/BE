@@ -27,7 +27,7 @@ jobs:
       - name: Set yml file
         uses: microsoft/variable-substitution@v1
         with:
-          files: ./src/main/resources/application.yml
+          files: ./src/main/resources/application.yml, ./src/main/resources/application-oauth2.yml
         env:
           server.port: 8080
           spring.datasource.driver-class-name: ${{ secrets.DATASOURCE_DRIVER_CLASS_NAME }}

@@ -3,7 +3,6 @@ package dino.junction.domain.template.controller;
 import dino.junction.common.model.CommonResponse;
 import dino.junction.domain.template.controller.request.TemplateCreateRequest;
 import dino.junction.domain.template.service.TemplateService;
-import jakarta.mail.Multipart;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
