@@ -1,7 +1,6 @@
 package dino.junction.common.exception;
 
 import com.google.api.client.http.HttpStatusCodes;
-import com.google.api.gax.rpc.UnauthenticatedException;
 import dino.junction.common.aop.LogTrace;
 import dino.junction.common.error.CustomException;
 import dino.junction.common.error.ErrorCode;
@@ -55,11 +54,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequestException(final Exception e) {
         return convertErrorResponse(e, HttpStatusCodes.STATUS_CODE_BAD_REQUEST, ErrorCode.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(UnauthenticatedException.class)
-    public ResponseEntity<ErrorResponse> handleUnauthorizedException(final Exception e) {
-        return convertErrorResponse(e, HttpStatusCodes.STATUS_CODE_UNAUTHORIZED, ErrorCode.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)

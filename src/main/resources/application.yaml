@@ -1,16 +1,13 @@
 spring:
   application:
     name: Junction-Dino
-
+  profiles:
+    include: oauth2
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/Junction-Dino
     username: postgres
     password: 1234
-
-  h2:
-    console:
-      enabled: true
 
   jpa:
     open-in-view: false
@@ -46,11 +43,6 @@ server:
     include-stacktrace: never     # Response 에 Stack Trace 를 표시할지 (never | always | on_param)
     whitelabel.enabled: true      # 에러 발생 시 Spring 기본 에러 페이지 노출 여부
 
-#  ssl:
-#    key-store: classpath:keystore.p12
-#    key-store-type: PKCS12
-#    key-store-password: ${SSL_KEYSTORE_PASSWORD}
-
 cloud:
   aws:
     bucket: junction-2024-dino
@@ -62,9 +54,8 @@ cloud:
       auto: false
 
 jwt:
-  secret: ${JWT_SECRET}
-  access-token-time: 864000000
-  refresh-token-time: 864000000
+  secret-key: CwS0ejODKrwKcZFCkXAeScfgixh2dKKtZj4eN5FdJoDHAeXpd7ScsxDqCmTGJtOGhQ75T33L1thACccTgjXuvw==
+  access-token-valid-time-in-milliseconds: 86400000 #1 day
 
 logging:
   level:
