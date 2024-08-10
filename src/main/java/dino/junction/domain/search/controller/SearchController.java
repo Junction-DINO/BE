@@ -17,12 +17,11 @@ public class SearchController {
     public CommonResponse<Object> searchFoodByNamesWithOcr(@ModelAttribute OcrRequest ocrRequest) {
         return CommonResponse.CommonResponseSuccess(searchService.searchFoodsWithOcr(ocrRequest, 0, 10));
     }
-    @GetMapping("/search")
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse<Object> searchFoodByName(
             @RequestParam(defaultValue = "") String q,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size) {
-
         return CommonResponse.CommonResponseSuccess(searchService.searchFoods(q, page, size));
     }
 }

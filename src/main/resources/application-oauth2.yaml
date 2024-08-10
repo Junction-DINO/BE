@@ -29,4 +29,6 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
 react:
-  url: http://127.0.0.1:3000
+  # url: https://junctiondino.netlify.app
+  url: http://localhost:5173
+
