@@ -4,6 +4,7 @@ import dino.junction.common.model.CommonResponse;
 import dino.junction.config.auth.jwt.AuthUser;
 import dino.junction.domain.food.controller.request.TemplateCreateRequest;
 import dino.junction.domain.food.service.FoodService;
+import dino.junction.domain.history.service.HistoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class FoodController {
     private final FoodService foodService;
+    private final HistoryService historyService;
 
     @GetMapping("")
     public CommonResponse<Object> getFood(@RequestParam String foodName) {
@@ -28,7 +30,7 @@ public class FoodController {
 
     @PostMapping("")
     public CommonResponse<Object> applyFood(@AuthenticationPrincipal AuthUser authUser, @RequestParam String foodName) {
-        foodService.applyFood(authUser.getName(), foodName);
+        historyService.recordHistory(authUser.getName(), foodName);
         return CommonResponse.CommonResponseSuccess("success");
     }
 }

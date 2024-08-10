@@ -47,6 +47,6 @@ public class HistoryService {
                 .proteinPercent(proteinPercent)
                 .fatPercent(fatPercent)
                 .build();
-
+        historyRepository.save(historyEntity);
     }
 }
