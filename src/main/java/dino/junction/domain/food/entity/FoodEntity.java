@@ -1,4 +1,4 @@
-package dino.junction.domain.food.model.entity;
+package dino.junction.domain.food.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;

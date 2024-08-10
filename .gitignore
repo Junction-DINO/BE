@@ -38,4 +38,7 @@ logs/
 .vscode/
 
 ### json key file ###
-gcs-key.json
+mimetic-perigee-432109-t4-e38ca4714989.json
+
+### docker-compose ###
+docker-compose.yml
