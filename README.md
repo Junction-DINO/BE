@@ -11,13 +11,6 @@
 This service empowers pregnant women to make informed dietary choices with confidence.
 
 
-## Features
-
-- RESTful APIs for managing resources
-- Integration with the database
-- Docker support for containerization
-- CI/CD pipeline configured via GitHub Actions
-
 ## Technologies Used
 - BackEnd
   - Java 17, Spring Boot, Gradle
@@ -34,25 +27,26 @@ This service empowers pregnant women to make informed dietary choices with confi
 ## Setup Instructions
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Junction-DINO/BE.git
-   cd BE
-   ```
+ ```bash
+ git clone https://github.com/Junction-DINO/BE.git
+ cd BE
+ ```
 2. **Build the project**
 
-```bash
-./gradlew build
+  ```bash
+  ./gradlew build
+  ```
 
 3. **Run the application**
-```bash
-./gradlew bootRun
-```
+  ```bash
+  ./gradlew bootRun
+  ```
 
 4. **Docker Setup**
-```bash
-docker build -t junction-backend .
-docker run -p 8080:8080 junction-backend
-```
+  ```bash
+  docker build -t junction-backend .
+  docker run -p 8080:8080 junction-backend
+  ```
 
 ## Contact
 
