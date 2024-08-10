@@ -1,0 +1,83 @@
+name: Deploy to GCP Instance using SSH
+
+on:
+  push:
+    branches: [ 'develop' ]
+
+jobs:
+  build:
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+
+      - name: Create application.yml
+        run: |
+          echo "${{ secrets.APPLICATION_YML }}" > src/main/resources/application.yml
+          echo "${{ secrets.APPLICATION_OAUTH2_YML }}" > src/main/resources//application-oauth2.yml
+
+      - name: Set yml file
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: ./src/main/resources/application.yml, ./src/main/resources/application-oauth2.yml
+        env:
+          server.port: 8080
+
+      - name: Keystore Save
+        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > ./src/main/resources/keystore.p12
+
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker build
+        run: |
+          docker build -t junction .
+          docker tag junction ${{ secrets.DOCKER_USERNAME }}/junction:${GITHUB_SHA::7}
+          docker tag junction ${{ secrets.DOCKER_USERNAME }}/junction:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/junction:${GITHUB_SHA::7}
+          docker push ${{ secrets.DOCKER_USERNAME }}/junction:latest
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            sudo docker system prune -a -f
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/junction:latest
+            sudo docker tag ${{ secrets.DOCKER_USERNAME }}/junction:latest junction-server
+            
+            if [ "$(sudo docker ps -aq -f name=junction-server)" ]
+            then
+              echo "[ junction-server is running ]"
+              sudo docker stop junction-server
+              sudo docker rm junction-server
+            else
+              echo "[ junction-server is not running ]"
+            fi
+            
+            sudo docker run -d --name junction-server  --network junction-network -p 8080:8080 junction-server
