@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/template")
+@RequestMapping("/")
 @Slf4j
 public class TemplateController {
     private final TemplateService templateService;
