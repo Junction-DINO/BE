@@ -63,8 +63,8 @@ cloud:
 
 jwt:
   secret: ${JWT_SECRET}
-  access-token-time: 864000000  # 10일
-  refresh-token-time: 864000000  # 10일
+  access-token-time: 864000000
+  refresh-token-time: 864000000
 
 logging:
   level:
