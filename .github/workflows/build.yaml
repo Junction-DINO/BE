@@ -1,7 +1,7 @@
 name: Java CI with Gradle
 
 on:
-  pull_request:
+  push:
     branches: [ 'develop' ]
 
 permissions:
@@ -23,6 +23,10 @@ jobs:
       - name: Create application.yml
         run: |
           echo "${{ secrets.APPLICATION_YML }}" > src/main/resources/application.yml
+
+      - name: Keystore Save
+        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > ./src/main/resources/keystore.p12
+
 
       - name: Set yml file
         uses: microsoft/variable-substitution@v1
