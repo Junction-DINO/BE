@@ -28,6 +28,9 @@ jobs:
         env:
           server.port: 8080
 
+      - name: Keystore Save
+        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > ./src/main/resources/keystore.p12
+
       - name: Run chmod to make gradlew executable
         run: chmod +x ./gradlew
 
