@@ -1,6 +1,7 @@
 package dino.junction.domain.search.controller;
 
 import dino.junction.common.model.CommonResponse;
+import dino.junction.domain.food.dto.FoodResponse;
 import dino.junction.domain.ocr.dto.OcrRequest;
 import dino.junction.domain.search.service.SearchService;
 import lombok.RequiredArgsConstructor;

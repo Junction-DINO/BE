@@ -1,4 +1,4 @@
-package dino.junction.config.auth.jwt;
+package dino.junction.common.auth.jwt;
 
 import io.jsonwebtoken.IncorrectClaimException;
 import jakarta.servlet.FilterChain;

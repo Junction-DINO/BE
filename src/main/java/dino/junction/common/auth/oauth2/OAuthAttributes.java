@@ -1,4 +1,4 @@
-package dino.junction.config.auth.oauth2;
+package dino.junction.common.auth.oauth2;
 
 
 import dino.junction.domain.user.entity.Role;

@@ -1,7 +1,7 @@
-package dino.junction.config.auth.handler;
+package dino.junction.common.auth.handler;
 
-import dino.junction.config.auth.jwt.AuthUser;
-import dino.junction.config.auth.jwt.TokenProvider;
+import dino.junction.common.auth.jwt.AuthUser;
+import dino.junction.common.auth.jwt.TokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

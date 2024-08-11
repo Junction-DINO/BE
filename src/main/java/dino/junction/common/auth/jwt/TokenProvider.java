@@ -1,4 +1,4 @@
-package dino.junction.config.auth.jwt;
+package dino.junction.common.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

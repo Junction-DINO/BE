@@ -14,9 +14,9 @@ import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class OcrService {
-
+    @Transactional
     public List<String> extractTextFromImageUrl(String imageUrl) throws Exception {
         URL url = new URL(imageUrl);
         ByteString imgBytes;

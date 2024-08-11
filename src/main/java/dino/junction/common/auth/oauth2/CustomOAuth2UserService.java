@@ -1,7 +1,7 @@
-package dino.junction.config.auth.oauth2;
+package dino.junction.common.auth.oauth2;
 
 
-import dino.junction.config.auth.jwt.AuthUser;
+import dino.junction.common.auth.jwt.AuthUser;
 import dino.junction.domain.user.entity.User;
 import dino.junction.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
