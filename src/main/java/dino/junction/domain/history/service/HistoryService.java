@@ -1,7 +1,6 @@
 package dino.junction.domain.history.service;
 
 import dino.junction.domain.food.dto.FoodResponse;
-import dino.junction.domain.food.entity.FoodEntity;
 import dino.junction.domain.food.service.FoodService;
 import dino.junction.domain.history.entity.HistoryEntity;
 import dino.junction.domain.history.repository.HistoryRepository;

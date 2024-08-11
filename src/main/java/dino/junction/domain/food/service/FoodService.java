@@ -30,7 +30,6 @@ import java.util.Objects;
 @Transactional(readOnly = true)
 public class FoodService {
     private final FoodRepository foodRepository;
-    private final HistoryService historyService;
     private final ImageService imageService;
     private final OcrService ocrService;
 
@@ -186,10 +185,6 @@ public class FoodService {
 
     }
 
-    @Transactional
-    public void applyFood(String userName, String foodName) {
-        historyService.recordHistory(userName, foodName);
-    }
 
     @Transactional
     public void saveFoodsFromJson() throws IOException {
