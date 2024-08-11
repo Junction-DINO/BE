@@ -32,6 +32,9 @@ jobs:
       - name: Keystore Save
         run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > ./src/main/resources/keystore.p12
 
+      - name: MIMETIC Save
+        run: echo "${{ secrets.MIMETIC }}" > ./src/main/resources/mimetic-perigee-432109-t4-e38ca4714989.json
+
       - name: Run chmod to make gradlew executable
         run: chmod +x ./gradlew
 
