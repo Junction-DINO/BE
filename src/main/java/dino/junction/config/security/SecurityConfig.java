@@ -1,11 +1,11 @@
 package dino.junction.config.security;
 
-import dino.junction.config.auth.handler.JwtAccessDeniedHandler;
-import dino.junction.config.auth.handler.JwtAuthenticationEntryPoint;
-import dino.junction.config.auth.handler.LoginSuccessHandler;
-import dino.junction.config.auth.jwt.JwtAuthenticationFilter;
-import dino.junction.config.auth.jwt.TokenProvider;
-import dino.junction.config.auth.oauth2.CustomOAuth2UserService;
+import dino.junction.common.auth.handler.JwtAccessDeniedHandler;
+import dino.junction.common.auth.handler.JwtAuthenticationEntryPoint;
+import dino.junction.common.auth.handler.LoginSuccessHandler;
+import dino.junction.common.auth.jwt.JwtAuthenticationFilter;
+import dino.junction.common.auth.jwt.TokenProvider;
+import dino.junction.common.auth.oauth2.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -70,18 +70,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                //.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .cors(cors -> cors
-                        .configurationSource(request -> {
-                            CorsConfiguration corsConfiguration = new CorsConfiguration();
-                            corsConfiguration.addAllowedOriginPattern("*"); // 모든 ip에 응답을 허용합니다.
-                            corsConfiguration.addAllowedMethod("*");
-                            corsConfiguration.addAllowedHeader("*");
-                            corsConfiguration.setAllowCredentials(true);
-                            corsConfiguration.setMaxAge(3600L);
-                            return corsConfiguration;
-                        })
-                )
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -109,16 +98,16 @@ public class SecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-//        configuration.setAllowedHeaders(List.of("*"));
-//        configuration.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "https://junctiondino.netlify.app"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }

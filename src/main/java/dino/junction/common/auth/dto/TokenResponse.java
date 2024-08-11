@@ -1,4 +1,4 @@
-package dino.junction.config.auth.dto;
+package dino.junction.common.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

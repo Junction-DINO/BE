@@ -5,10 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dino.junction.domain.food.dto.FoodResponse;
-import dino.junction.domain.food.entity.FoodEntity;
+import dino.junction.domain.food.entity.Food;
 import dino.junction.domain.food.repository.FoodRepository;
-import dino.junction.domain.history.entity.HistoryEntity;
-import dino.junction.domain.history.repository.HistoryRepository;
 import dino.junction.domain.history.service.HistoryService;
 import dino.junction.domain.image.service.ImageService;
 import dino.junction.domain.ocr.service.OcrService;
@@ -37,11 +35,11 @@ public class FoodService {
     private final OcrService ocrService;
 
     @Transactional
-    public void saveFoods(List<FoodEntity> foods) {
+    public void saveFoods(List<Food> foods) {
         foodRepository.saveAll(foods);
     }
 
-    public List<FoodResponse> searchFoods(String q, Pageable pageable) {
+        public List<FoodResponse> searchFoods(String q, Pageable pageable) {
         return foodRepository.findByFoodNameContaining(q, pageable)
                 .stream()
                 .map(food -> FoodResponse.builder()
@@ -149,7 +147,7 @@ public class FoodService {
 
     @Transactional
     public FoodResponse getFood(String foodName) {
-        FoodEntity food = foodRepository.findByFoodName(foodName)
+        Food food = foodRepository.findByFoodName(foodName)
                 .orElseThrow(() -> new IllegalArgumentException("해당 식품을 찾을 수 없습니다."));
         return FoodResponse.builder()
                 .id(food.getId())
@@ -199,11 +197,11 @@ public class FoodService {
         JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
 
         JsonArray recordsArray = jsonObject.getAsJsonArray("records");
-        List<FoodEntity> foodEntities = new ArrayList<>();
+        List<Food> foodEntities = new ArrayList<>();
 
         for (JsonElement element : recordsArray) {
             JsonObject foodJson = element.getAsJsonObject();
-            FoodEntity foodEntity = FoodEntity.builder()
+            Food food = Food.builder()
                     .foodCode(foodJson.has("식품코드") ? foodJson.get("식품코드").getAsString() : "0")
                     .foodName(foodJson.has("식품명") ? foodJson.get("식품명").getAsString() : "0")
                     .nutritionStandardAmount(foodJson.has("영양성분함량기준량") ? foodJson.get("영양성분함량기준량").getAsString() : "0")
@@ -237,12 +235,11 @@ public class FoodService {
                     .providerName(foodJson.has("제공기관명") ? foodJson.get("제공기관명").getAsString() : "0")
                     .build();
 
-            foodEntities.add(foodEntity);
+            foodEntities.add(food);
         }
         foodRepository.saveAll(foodEntities);
 
     }
-
     private static Double parseDoubleOr0(String value) {
         try {
             return value.isEmpty() ? 0 : Double.parseDouble(value);

@@ -12,7 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FoodEntity {
+public class Food {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -111,13 +112,13 @@ public class FoodEntity {
     private String providerName;
 
     @Builder
-    public FoodEntity(String foodCode, String foodName, String nutritionStandardAmount, Double energyKcal,
-                      Double waterG, Double proteinG, Double fatG, Double ashG, Double carbohydrateG, Double sugarG,
-                      Double dietaryFiberG, Double calciumMg, Double ironMg, Double phosphorusMg, Double potassiumMg,
-                      Double sodiumMg, Double vitaminAμgRAE, Double retinolμg, Double betaCaroteneμg, Double thiamineMg,
-                      Double riboflavinMg, Double niacinMg, Double vitaminCMg, Double vitaminDμg, Double cholesterolMg,
-                      Double saturatedFattyAcidG, Double transFattyAcidG, String servingSizeReference, String foodWeight,
-                      String productReportNumber, String manufacturerName, String providerName) {
+    public Food(String foodCode, String foodName, String nutritionStandardAmount, Double energyKcal,
+                Double waterG, Double proteinG, Double fatG, Double ashG, Double carbohydrateG, Double sugarG,
+                Double dietaryFiberG, Double calciumMg, Double ironMg, Double phosphorusMg, Double potassiumMg,
+                Double sodiumMg, Double vitaminAμgRAE, Double retinolμg, Double betaCaroteneμg, Double thiamineMg,
+                Double riboflavinMg, Double niacinMg, Double vitaminCMg, Double vitaminDμg, Double cholesterolMg,
+                Double saturatedFattyAcidG, Double transFattyAcidG, String servingSizeReference, String foodWeight,
+                String productReportNumber, String manufacturerName, String providerName) {
         this.foodCode = foodCode;
         this.foodName = foodName;
         this.nutritionStandardAmount = nutritionStandardAmount;

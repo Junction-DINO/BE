@@ -1,4 +1,4 @@
-package dino.junction.config.auth.handler;
+package dino.junction.common.auth.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;

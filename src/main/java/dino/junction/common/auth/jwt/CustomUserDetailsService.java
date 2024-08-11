@@ -1,4 +1,4 @@
-package dino.junction.config.auth.jwt;
+package dino.junction.common.auth.jwt;
 
 
 import dino.junction.domain.user.entity.User;

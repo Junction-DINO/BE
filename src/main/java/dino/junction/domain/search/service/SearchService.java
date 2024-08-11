@@ -1,7 +1,6 @@
 package dino.junction.domain.search.service;
 
 import dino.junction.domain.food.dto.FoodResponse;
-import dino.junction.domain.food.entity.FoodEntity;
 import dino.junction.domain.food.service.FoodService;
 import dino.junction.domain.ocr.dto.OcrRequest;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class SearchService {
     private final FoodService foodService;
 
