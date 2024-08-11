@@ -14,8 +14,8 @@ This service empowers pregnant women to make informed dietary choices with confi
 ## Technologies Used
 - BackEnd
   - Java 17, Spring Boot, Gradle
-  - Postgre SQL
-  - AWS EC2, S3
+  - Postgre SQL, AWS S3
+  - nglok
   - Github Actions, Docker
   - Google Cloud Vision
 - FrontEnd
