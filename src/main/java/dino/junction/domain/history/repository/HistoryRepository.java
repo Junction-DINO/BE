@@ -1,6 +1,5 @@
 package dino.junction.domain.history.repository;
 
-import dino.junction.domain.food.entity.FoodEntity;
 import dino.junction.domain.history.entity.HistoryEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

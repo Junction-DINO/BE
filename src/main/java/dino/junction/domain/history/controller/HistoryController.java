@@ -1,13 +1,14 @@
 package dino.junction.domain.history.controller;
 
+import dino.junction.common.auth.jwt.AuthUser;
 import dino.junction.common.model.CommonResponse;
-import dino.junction.config.auth.jwt.AuthUser;
 import dino.junction.domain.history.service.HistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
