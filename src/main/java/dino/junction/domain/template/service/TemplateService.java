@@ -52,7 +52,6 @@ public class TemplateService {
     }
 
     public File downloadFile(String fileName) {
-
         File file = new File(fileName);
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(amazonS3Client.getObject(bucket, fileName).getObjectContent().readAllBytes());

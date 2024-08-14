@@ -1,4 +1,5 @@
 ## Project Overview: Can I Eat?
+<img src="./diagram.png" width="600" height="500"/>
 
 **"Can I Eat?"** is a web application specifically designed for pregnant women, helping them determine if certain foods are safe to consume. Utilizing camera-based OCR (Optical Character Recognition), the app scans food labels or packaging and cross-references the ingredients against a comprehensive database of safe and unsafe foods for pregnancy.
 

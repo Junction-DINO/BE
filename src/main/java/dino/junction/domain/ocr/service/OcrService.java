@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 public class OcrService {
     @Transactional
     public List<String> extractTextFromImageUrl(String imageUrl) throws Exception {
+        System.out.println(imageUrl);
         URL url = new URL(imageUrl);
         ByteString imgBytes;
         try (InputStream in = url.openStream()) {
